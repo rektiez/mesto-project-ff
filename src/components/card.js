@@ -1,5 +1,3 @@
-import { openModal, closeModal } from "../components/modals.js";
-
 function createCard(cardInfo, deleteCard, likeCard, imageOpen) {
   const cardElement = document
     .querySelector("#card-template")
@@ -38,35 +36,4 @@ function likeCard(likeButton) {
   likeButton.classList.toggle("card__like-button_is-active");
 }
 
-function imageOpen(title, link) {
-  const modalImage = document.querySelector(".popup_type_image .popup__image");
-  const modalDescription = document.querySelector(
-    ".popup_type_image .popup__caption"
-  );
-
-  modalImage.src = link;
-  modalImage.alt = title;
-  modalDescription.textContent = title;
-
-  openModal(document.querySelector(".popup_type_image"));
-}
-
-function addNewCard(evt, placesList, modalWindowAdd, addCardForm) {
-  evt.preventDefault();
-
-  const cardTitleInput = addCardForm.querySelector('[name="place-name"]');
-  const cardLinkInput = addCardForm.querySelector('[name="link"]');
-
-  const title = cardTitleInput.value;
-  const link = cardLinkInput.value;
-
-  const newCard = { name: title, link: link };
-  const cardElement = createCard(newCard, deleteCard, likeCard, imageOpen);
-  placesList.prepend(cardElement);
-
-  cardTitleInput.value = "";
-  cardLinkInput.value = "";
-
-  closeModal(modalWindowAdd);
-}
-export { createCard, deleteCard, likeCard, imageOpen, addNewCard };
+export { createCard, deleteCard, likeCard };

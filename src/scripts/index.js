@@ -17,7 +17,7 @@ const modalWindowEdit = document.querySelector(".popup_type_edit");
 const modalWindowAdd = document.querySelector(".popup_type_new-card");
 const closeButtons = document.querySelectorAll(".popup__close");
 
-const formElement = document.querySelector(".popup__form");
+const editFormElement = document.querySelector(".popup__form");
 const nameInput = modalWindowEdit.querySelector('input[name="name"]');
 const jobInput = modalWindowEdit.querySelector('input[name="description"]');
 
@@ -82,7 +82,7 @@ closeButtons.forEach((button) => {
   });
 });
 
-formElement.addEventListener("submit", function (evt) {
+editFormElement.addEventListener("submit", function (evt) {
   evt.preventDefault();
   const newName = nameInput.value;
   const newJob = jobInput.value;

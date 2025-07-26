@@ -33,7 +33,7 @@ function createCard(cardData, userId, enlargeCardImage) {
   }
 
   likeButton.addEventListener("click", (evt) =>
-    toogleLike(evt, cardId, likesCounter)
+    toggleLike(evt, cardId, likesCounter)
   );
 
   cardImage.addEventListener("click", () =>
@@ -46,7 +46,7 @@ function createCard(cardData, userId, enlargeCardImage) {
   }
 
   if (amountLikes) {
-    likesCounter.textContent = amountLikes;
+    likesCounter.textContent = amountLikes || 0
   } else {
     likesCounter.textContent = 0;
   }
@@ -54,29 +54,16 @@ function createCard(cardData, userId, enlargeCardImage) {
   return cardElement;
 }
 
-function toogleLike(evt, cardId, likesCounter) {
+function toggleLike(evt, cardId, likesCounter) {
   const isLiked = evt.target.classList.contains("card__like-button_is-active");
-  if (isLiked) {
-    deleteLike(cardId)
-      .then((card) => {
-        evt.target.classList.remove("card__like-button_is-active");
-        likesCounter.textContent = card.likes.length;
-        console.log("Лайк успешно удалён");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  } else {
-    addLike(cardId)
-      .then((card) => {
-        evt.target.classList.add("card__like-button_is-active");
-        likesCounter.textContent = card.likes.length;
-        console.log("Лайк успешно поставлен");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+  const likeMethod = isLiked ? deleteLike : addLike;
+
+  likeMethod(cardId)
+    .then((card) => {
+      evt.target.classList.toggle("card__like-button_is-active");
+      likesCounter.textContent = card.likes.length;
+    })
+    .catch((err) => console.log(err));
 }
 
 function deleteCard(cardId, cardElement) {

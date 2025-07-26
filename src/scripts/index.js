@@ -176,13 +176,19 @@ function handleFormUpdateAvatarSubmit(evt) {
 
 function waitSubmitForm(form, waitingPosition) {
   const submitButton = form.querySelector(".popup__button");
-  switch (waitingPosition) {
+   switch (waitingPosition) {
     case "start": {
-      submitButton.textContent += "...";
+      submitButton.dataset.originalText = submitButton.textContent;
+      submitButton.textContent = "Сохранение...";
       break;
     }
     case "end": {
-      submitButton.textContent = submitButton.textContent.replace("...", "");
+      if (submitButton.dataset.originalText) {
+        submitButton.textContent = submitButton.dataset.originalText;
+      } else {
+        submitButton.textContent = "Сохранить";
+      }
+      break;
     }
   }
 }

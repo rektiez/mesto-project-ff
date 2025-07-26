@@ -7,12 +7,10 @@
   line-height: 18px;
   box-sizing: border-box;
   padding: 10px 0 0;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
-.popup__input:last-of-type {
-  margin-bottom: 0;
-}
+
 
 @media screen and (max-width: 568px) {
   .popup__title {
@@ -21,17 +19,25 @@
   }
 }
 
-.popup__error {
-  color: #F00;
-  font-size: 12px;
-  font-weight: 400;
-  visibility: hidden;
-}
+
 
 .popup__input_type_error {
-  border-bottom-color: red;
+  border-bottom: 1px solid #FF0000;
+
+}
+
+.popup__input-error {
+  display: block;
+  font-size: 12px;
+  line-height: 12px;
+  color: #FF0000;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s;
 }
 
 .popup__error_visible {
   visibility: visible;
+  opacity: 1;
 }
+

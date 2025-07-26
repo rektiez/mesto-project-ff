@@ -31,4 +31,4 @@ function clickOutsideModal(evt) {
   }
 }
 
-export { openModal, closeModal, clickOutsideModal };
+export { openModal, closeModal, clickOutsideModal};
